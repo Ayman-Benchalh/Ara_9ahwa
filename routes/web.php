@@ -14,6 +14,7 @@ use App\Livewire\Admin\CommandeProduitComponent;
 // use App\Livewire\CategoryComponent;
 use App\Livewire\Admin\CategoryComponent;
 use App\Livewire\Dashboard;
+use App\Livewire\Menu;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Login;
 /*
@@ -28,26 +29,26 @@ use App\Livewire\Auth\Login;
 */
 
 
+// Route::get('/',[ClientController::class,'index'])->name('home');
+// Route::get('/register', Register::class)->name('register');
+// Route::get('/login', Login::class)->name('login');
+
+// Route::prefix('admin')->group(function () {
+//     Route::get('/login', [UserController::class, 'login'])->name('admin.login');
+//     Route::post('/login', [UserController::class, 'doLogin']);
+//     Route::middleware('admin')->group(function () {
+//         Route::get('/dashboard',Dashboard::class)->name('dashboard');
+//         Route::get('/commandes', [CommandeController::class, 'index'])->name('admin.commandes');
+//         Route::post('/commande/{id}/accepter', [CommandeController::class, 'accepter']);
+//         Route::post('/logout', [UserController::class, 'logout'])->name('admin.logout');
+
+//     });
+// });
+
 Route::get('/',[ClientController::class,'index'])->name('home');
 Route::get('/register', Register::class)->name('register');
 Route::get('/login', Login::class)->name('login');
-
-Route::prefix('admin')->group(function () {
-    Route::get('/login', [UserController::class, 'login'])->name('admin.login');
-    Route::post('/login', [UserController::class, 'doLogin']);
-    Route::middleware('admin')->group(function () {
-        Route::get('/dashboard',Dashboard::class)->name('dashboard');
-        Route::get('/commandes', [CommandeController::class, 'index'])->name('admin.commandes');
-        Route::post('/commande/{id}/accepter', [CommandeController::class, 'accepter']);
-        Route::post('/logout', [UserController::class, 'logout'])->name('admin.logout');
-
-    });
-});
-
-Route::get('/',[ClientController::class,'index'])->name('home');
-Route::get('/register', Register::class)->name('register');
-Route::get('/login', Login::class)->name('login');
-
+Route::get('/menu', Menu::class)->name('menu');
 Route::prefix('admin')->group(function () {
     Route::get('/login', [UserController::class, 'login'])->name('admin.login');
     Route::post('/login', [UserController::class, 'doLogin']);

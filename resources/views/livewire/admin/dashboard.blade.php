@@ -7,30 +7,29 @@
 <h2 class="text-2xl font-semibold mb-3">Produits</h2>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
-    <div class="bg-white shadow rounded-xl p-1" wire:foreach="products as product">
-            <img src="https://cdn.pixabay.com/photo/2014/04/22/02/56/pizza-329523_960_720.jpg" alt="Produit" class="w-full h-48 object-cover rounded-xl" >
-            {{-- <h3 class="text-lg font-semibold mt-2">{{ produits.nom }}</h3> --}}
-        <div class="p-3 flex gap-2 flex-col">
-            <h3 class="text-2xl font-semibold tracking-tight text-gray-900 ">p1</h3>
-            {{-- <p class="text-gray-700">Prix: {{ produits.prix }} DH</p> --}}
-            <p class=" text-xl font-bold text-gray-900/50 ">Prix: 5000 DH</p>
-            {{-- <p class="text-gray-500">Quantité: {{ produits.quantite }}</p> --}}
+    @foreach ($produits as $categorieProduits)
+    @foreach ($categorieProduits as $prod)
+    {{-- {{ dd($prod) }} --}}
+    {{-- {{ dd($prod->produitImages->first()->image_path) }} --}}
 
-            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Détails</button>
-        </div>
-    </div>
-    <div class="bg-white shadow rounded-xl p-1" wire:foreach="products as product">
-            <img src="https://cdn.pixabay.com/photo/2014/04/22/02/56/pizza-329523_960_720.jpg" alt="Produit" class="w-full h-48 object-cover rounded-xl" >
-            {{-- <h3 class="text-lg font-semibold mt-2">{{ produits.nom }}</h3> --}}
-        <div class="p-3 flex gap-2 flex-col">
-            <h3 class="text-2xl font-semibold tracking-tight text-gray-900 ">p1</h3>
-            {{-- <p class="text-gray-700">Prix: {{ produits.prix }} DH</p> --}}
-            <p class=" text-xl font-bold text-gray-900/50 ">Prix: 5000 DH</p>
-            {{-- <p class="text-gray-500">Quantité: {{ produits.quantite }}</p> --}}
+    <div class="bg-white shadow rounded-xl p-1 relative" wire:key="product-{{ $prod->id }}">
+                <img src="{{asset('Storage/'. $prod->produitImages->first()->image_path )}}" alt="Produit" class="w-full h-48 object-cover rounded-xl" >
 
-            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Détails</button>
+            <div class="p-3 flex gap-2 flex-col">
+                <h3 class="text-2xl font-semibold tracking-tight text-gray-900 ">{{ $prod->nom }}</h3>
+
+                {{-- <p class="text-gray-700">Prix: {{ $product->prix }} DH</p> --}}
+                <p class=" text-[15px] shadow-2xs font-bold bg-amber-400 p-2 rounded-2xl text-white absolute top-2 right-2">{{ $prod->prix }} DH</p>
+                <p class=" text-[15px] font-bold text-gray-900/50 ">Categorie {{ $prod->categorie->name }}  </p>
+
+
+                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Détails</button>
+            </div>
         </div>
-    </div>
+        @endforeach
+@endforeach
+
+
 
 </div>
 

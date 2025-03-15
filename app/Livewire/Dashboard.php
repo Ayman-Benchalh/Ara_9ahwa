@@ -27,13 +27,15 @@ class Dashboard extends Component
     // }
     public function render()
     {
-        $produits = Produit::all()->groupBy('category');
+        // $produits = Produit::all()->groupBy('category');
+        $produits = Produit::with(['categorie', 'produitImages'])->get()->groupBy('categorie_id')->values();
         // dd( $produits);
         $totalCommandes = Commande::count();
         $totalRevenue = Commande::sum('total_prix');
         $tables = Table::count();
 
         return view('livewire.admin.dashboard', [
+
             'produits' => $produits,
             'totalCommandes' => $totalCommandes,
             'totalRevenue' => $totalRevenue,

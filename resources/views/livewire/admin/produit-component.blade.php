@@ -53,7 +53,9 @@
     <!-- Affichage des Produits par Catégorie -->
     <div class="mt-8">
         @foreach($produits as $categorie_id => $produitsParCategorie)
-            <h3 class="text-xl font-semibold text-gray-800 my-4">{{ $categories->find($categorie_id)?->name }}</h3>
+            <h3 class="text-xl font-semibold text-white my-4 border-2 border-blue-700 bg-blue-600 rounded-2xl p-2">
+                {{ $categories->find($categorie_id)?->name }}
+            </h3>
             <div class="relative w-full overflow-hidden px-7">
                 <div class="flex space-x-4 snap-x py-2">
                     @foreach($produitsParCategorie as $product)
@@ -65,12 +67,25 @@
                                 <h4 class="mt-2 text-lg font-semibold">{{ $product->nom }}</h4>
                                 <p class="text-gray-600">{{ $product->prix }} DH</p>
                             </div>
-                            <button wire:model="update" class="bg-green-400 text-white w-9 h-9 rounded-full border-2 border-green-500 duration-300 hover:bg-green-600 transition absolute -top-2 -left-2"><i class="fa-solid fa-pen"></i></button>
-                            <button wire:model="delete({{ $product->id }})"  class="bg-red-400 text-white w-9 h-9 border-2 border-red-500  duration-300 hover:bg-red-600  transition rounded-full absolute -top-2 -right-2"><i class="fa-solid fa-trash"></i></button>
+                            <button wire:click="edit({{ $product->id }})" class="bg-green-400 text-white w-9 h-9 rounded-full border-2 border-green-500 duration-300 hover:bg-green-600 transition absolute -top-2 -left-2">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button wire:click="delete({{ $product->id }})" class="bg-red-400 text-white w-9 h-9 border-2 border-red-500 duration-300 hover:bg-red-600 transition rounded-full absolute -top-2 -right-2">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
                         </div>
                     @endforeach
                 </div>
             </div>
         @endforeach
     </div>
+    <!-- Button Modifier -->
+{{-- <button wire:click="edit({{ $produit->id }})" class="bg-blue-500 text-white px-4 py-2 rounded">
+    Modifier
+</button> --}}
+
+<!-- Modal -->
+
+</div>
+
 </div>
