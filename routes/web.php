@@ -48,7 +48,9 @@ use App\Livewire\Auth\Login;
 Route::get('/',[ClientController::class,'index'])->name('home');
 Route::get('/register', Register::class)->name('register');
 Route::get('/login', Login::class)->name('login');
-Route::get('/menu', Menu::class)->name('menu');
+Route::get('/menu/{qr_code}', Menu::class)->name('menu');
+
+
 Route::prefix('admin')->group(function () {
     Route::get('/login', [UserController::class, 'login'])->name('admin.login');
     Route::post('/login', [UserController::class, 'doLogin']);
